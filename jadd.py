@@ -19,7 +19,9 @@ PATH_FILE = 'data/test.txt'
 #    key  = 'key{num}'.format(num=i)
 #    data = { key: i }                    # サンプル辞書データ
 #    append_json_to_file(data, PATH_FILE) # 要素を追加
-data={"title":"うめきちとうめこ","body":"松本さん 10日で卵を産む","amount":"8000","date":"2020/02/17 12:00"}
+#data={"title":"うめきちとうめこ","body":"松本さん 10日で卵を産む","amount":"8000","date":"2020/02/17 12:00"}
+data={"title":"香取神社　福分け炊き出し","body":"カメイド七福神","amount":"0","date":"2020/03/08 11:00"}
+
 append_json_to_file(data, PATH_FILE)
 # 検証（保存ファイルのまるごと読み込み）
 f_saved  = open(PATH_FILE, "r")
