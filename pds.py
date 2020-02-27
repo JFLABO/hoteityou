@@ -1,4 +1,6 @@
 import pandas as pd
+import json
+print("\007")
 df = pd.read_csv('./data/account.csv', sep=',')
 print(df.head())
 #df['金額'].value_counts()
@@ -40,3 +42,13 @@ print(df_ac)
 # 0  a_1  c_1
 # 1  a_2  c_2
 # 2  a_4  c_4
+
+s = '{"col1":{"row1":1,"row2":2,"row3":3},"col2":{"row1":"a","row2":"x","row3":"\u3042"}}'
+
+df_s = pd.read_json(s)
+
+print(df_s)
+df_s.to_json('data/d.json')
+s=df_s.to_json()
+with open('data/population.json', 'w') as f:
+    json.dump(s, f, ensure_ascii=False, indent=4)
