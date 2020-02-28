@@ -168,6 +168,7 @@ def show_view2():
     view2.show()
 def show_hensyu(self):
     #print(self.currentQTableWidgetItem.row())
+    #番目のデータ 　削除
     print(self.row())
     #ファイルを読んでデータを表示する
     f = open('data/test.txt', 'r')
@@ -175,32 +176,40 @@ def show_hensyu(self):
     f.close()
     #tableData0=contents
     d=jsonData
+    i=0
     for item in d:
-        # print(str(i)+":"+item["title"])
+        if i==self.row():
+            # print(str(i)+":"+item["title"])
 
-        if not item.get('title'):
-            print('NULL')
-        else:
-            s01 = str(item["title"])
-            hensyu.lineEdit.setText(s01)
+            if not item.get('title'):
+                print('NULL')
+            else:
+                s01 = str(item["title"])
+                hensyu.lineEdit.setText(s01)
 
-        if not item.get('amount'):
-            print('NULL')
-        else:
-            s02=item["amount"]
-            hensyu.lineEdit_2.setText(s02)
-        if not item.get('date'):
-            print('NULL')
-        else:
-            s03 =item["date"]
-            #alarm_date = QtCore.QDateTime(s03)
-            alarm_date=datetime.datetime.strptime(s03, "%Y/%m/%d %H:%M")
-            # dateTimeEdit.setDate(alarm_date)
-            hensyu.dateTimeEdit.setDate(alarm_date)
+            if not item.get('amount'):
+                print('NULL')
+            else:
+                s02=item["amount"]
+                hensyu.lineEdit_2.setText(s02)
+            if not item.get('date'):
+                print('NULL')
+            else:
+                s03 =item["date"]
+                #alarm_date = QtCore.QDateTime(s03)
+                alarm_date=datetime.datetime.strptime(s03, "%Y/%m/%d %H:%M")
+                # dateTimeEdit.setDate(alarm_date)
+                hensyu.dateTimeEdit.setDate(alarm_date)
+        i=i+1
 
     hensyu.show()
 def show_addnew():
     addnew.show()
+    #表のアップデート
+def hensyu_update():
+    hensyu.close()
+    #表のアップデート
+
 def addnew_obj():
     #ウインドウから値を取得
     #オブジェクトの数だけ繰り返す。
@@ -250,6 +259,7 @@ def append_json_to_file(data: dict, path_file: str) -> bool:
 #win.pushButton_4.clicked.connect(show_view2)
 win.pushButton.clicked.connect(show_addnew)
 addnew.pushButton.clicked.connect(addnew_obj)
+hensyu.pushButton.clicked.connect(hensyu_update)
 #win.tableWidget.setEditTriggers(QtGui.NoEditTriggers)
 setTable(win)
 #table.show()
