@@ -318,15 +318,41 @@ def append_json_to_file(data: dict, path_file: str) -> bool:
             #f.write(data)
             f.write(']'.encode())  # JSON 配列を閉じる
     return f.close()  # 連続で追加する場合は都度 Open, Close しない方がいいかもimport json
-win.pushButton_4.clicked.connect(show_view2)
-addnew.pushButton.clicked.connect(addnew_obj)
-win.pushButton_3.clicked.connect(show_addnew)
+
+import pandas_datareader.data as web
+import datetime
+import matplotlib.pyplot as plt
+def stock():
+    start = datetime.datetime(2012, 1, 1)
+    end = datetime.datetime(2017, 12, 31)
+
+    #f = web.DataReader('SNE', 'morningstar', start, end)
+    f = web.DataReader('SNE', 'yahoo', start, end)
+    print(f.head())
+    #f2 = web.DataReader(['SNE', 'AAPL'], 'morningstar', start, end)
+    f2 = web.DataReader(['SNE', 'AAPL'], 'yahoo', start, end)
+
+    print(type(f2.index))
+    print(f2.head())
+    print(f2.tail())
+    f2_u = f2.unstack(0)
+    print(f2_u.head())
+    f2_u['Close'].plot(title='SNE vs AAPL', grid=True)
+    plt.show()
+    #plt.savefig('data/dst/pandas_datareader_morningstar.png')
+    #ModuleNotFoundError: No module named 'pandas_datareader'
+    #(base) PS D:\06.gitrepo\hoteityou> pip install pandas-datareader
+    #pip install git+https://github.com/pydata/pandas-datareader.git
 
 setTable(win)
 setTable2(win)
 setTable3(win)
 setTable4(win)
 #table.show()
+win.pushButton_4.clicked.connect(show_view2)
+addnew.pushButton.clicked.connect(addnew_obj)
+win.pushButton_3.clicked.connect(show_addnew)
+win.pushButton_5.clicked.connect(stock)
 t = threading.Thread(target = scheduler)
 t.start()
 #t.stopping.set()  # 終了中フラグを立てる
