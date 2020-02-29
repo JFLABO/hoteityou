@@ -45,7 +45,7 @@
      <x>20</x>
      <y>250</y>
      <width>751</width>
-     <height>192</height>
+     <height>121</height>
     </rect>
    </property>
   </widget>
@@ -79,7 +79,7 @@
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>450</y>
+     <y>390</y>
      <width>151</width>
      <height>16</height>
     </rect>
@@ -298,16 +298,6 @@
     <set>Qt::AlignRight|Qt::AlignTop|Qt::AlignTrailing</set>
    </property>
   </widget>
-  <widget class="QTableView" name="tableView_4">
-   <property name="geometry">
-    <rect>
-     <x>20</x>
-     <y>470</y>
-     <width>751</width>
-     <height>121</height>
-    </rect>
-   </property>
-  </widget>
   <widget class="QLabel" name="label_16">
    <property name="geometry">
     <rect>
@@ -379,14 +369,14 @@
   <widget class="QPushButton" name="pushButton_3">
    <property name="geometry">
     <rect>
-     <x>700</x>
-     <y>450</y>
-     <width>75</width>
+     <x>614</x>
+     <y>380</y>
+     <width>151</width>
      <height>23</height>
     </rect>
    </property>
    <property name="text">
-    <string>編集</string>
+    <string>新規追加</string>
    </property>
   </widget>
   <widget class="QPushButton" name="pushButton_4">
@@ -399,7 +389,30 @@
     </rect>
    </property>
    <property name="text">
-    <string>PushButton</string>
+    <string>window</string>
+   </property>
+  </widget>
+  <widget class="QTableWidget" name="tableWidget">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>410</y>
+     <width>751</width>
+     <height>181</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_5">
+   <property name="geometry">
+    <rect>
+     <x>790</x>
+     <y>230</y>
+     <width>191</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>株価推移</string>
    </property>
   </widget>
  </widget>
