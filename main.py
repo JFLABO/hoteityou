@@ -17,6 +17,7 @@ import json
 app = QtWidgets.QApplication([])
  
 win = uic.loadUi("ui/hotei.ui") #specify the location of your .ui file
+nnw = uic.loadUi("ui/nnw.ui")
 view2 = uic.loadUi("ui/view2.ui")
 hensyu = uic.loadUi("ui/hensyu.ui")
 addnew = uic.loadUi("ui/addnew.ui")
@@ -343,15 +344,21 @@ def stock():
     #ModuleNotFoundError: No module named 'pandas_datareader'
     #(base) PS D:\06.gitrepo\hoteityou> pip install pandas-datareader
     #pip install git+https://github.com/pydata/pandas-datareader.git
+def show_nnw():
+    nnw.show()
 
+def close_nnw():
+    nnw.close()
 setTable(win)
 setTable2(win)
 setTable3(win)
 setTable4(win)
 #table.show()
 win.pushButton_4.clicked.connect(show_view2)
+win.pushButton_6.clicked.connect(show_nnw)
 addnew.pushButton.clicked.connect(addnew_obj)
 win.pushButton_3.clicked.connect(show_addnew)
+nnw.pushButton.clicked.connect(close_nnw)
 win.pushButton_5.clicked.connect(stock)
 t = threading.Thread(target = scheduler)
 t.start()

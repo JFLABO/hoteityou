@@ -415,6 +415,19 @@
     <string>株価推移</string>
    </property>
   </widget>
+  <widget class="QPushButton" name="pushButton_6">
+   <property name="geometry">
+    <rect>
+     <x>600</x>
+     <y>10</y>
+     <width>75</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>新規追加</string>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections>
