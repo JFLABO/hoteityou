@@ -33,7 +33,53 @@ win.show()
 #t1 = threading.Thread(target=functions.hello1(win))
 #t1 = threading.Timer(1, functions.hello1(win))
 #t1.start()
+def setTable(win):
+    headers = ["内容", "重要度", "優先度"]
+    # ファイルをオープンする
+    # test_data = open("data/tabledata.json", "r")
+    # すべての内容を読み込む
+    # contents = test_data.read()
+    # ファイルをクローズする
+    # test_data.close()
+    f = open('data/test2.txt', 'r')
+    jsonData = json.load(f)
+    f.close()
+    # tableData0=contents
+    d = jsonData
+    print(d)
+    i = 0
+    j = 0
+    # for i, (key, value) in enumerate(d["events"].items()):
+    # set row count
+    win.tableWidget_2.setRowCount(10)
+    # set column count
+    win.tableWidget_2.setColumnCount(4)
+    win.tableWidget_2.itemDoubleClicked.connect(show_hensyu)
+    # currentQTableWidgetItem.row()
 
+    for item in d:
+        # print(str(i)+":"+item["title"])
+        Data = QTableWidgetItem(str(item["title"]))
+        j = 0
+        win.tableWidget_2.setItem(i, j, Data)
+
+        j = 1
+        Data2 = QTableWidgetItem(str(item["body"]))
+        win.tableWidget_2.setItem(i, j, Data2)
+
+        j = 2
+
+        if not item.get('date'):
+            print('NULL')
+        else:
+            Data2 = QTableWidgetItem(str(item["date"]))
+            win.tableWidget_2.setItem(i, j, Data2)
+
+        j = 3
+        Data2 = QTableWidgetItem(str(item["amount"]))
+        win.tableWidget.setItem(i, j, Data2)
+        i = i + 1
+'''
 def setTable(win):
     headers = ["内容", "重要度", "優先度"]
     # ファイルをオープンする
@@ -53,7 +99,7 @@ def setTable(win):
     header.setSectionResizeMode(0, QtWidgets.QHeaderView.Stretch)
     win.tableView.resizeColumnToContents(1)
     win.tableView.resizeColumnToContents(2)
-
+'''
 def setTable2(win):
     headers = ["内容", "重要度", "優先度"]
     # ファイルをオープンする
@@ -73,7 +119,37 @@ def setTable2(win):
     header.setSectionResizeMode(0, QtWidgets.QHeaderView.Stretch)
     win.tableView_2.resizeColumnToContents(1)
     win.tableView_2.resizeColumnToContents(2)
+def close_nnw():
+    #表示順序の変更
+    #ウインドウから値を取得
+    #オブジェクトの数だけ繰り返す。
+    #開いたときに初期化 今日の日付にする
+    dt = self.ui.dateTimeEdit.dateTime()
+    dt_string = dt.toString(self.ui.dateTimeEdit.displayFormat())
 
+
+    #nnw.dateTimeEdit.strftime()
+    PATH_FILE = 'data/test2.txt'
+    title = nnw.lineEdit.text()
+    body = nnw.textEdit.toPlainText()
+    amount = nnw.lineEdit_2.text()
+    name = nnw.label_2.text()
+    date=nnw.dateTimeEdit.strftime()
+    d={}
+    keys = ['title', 'body', 'amount','name',date]
+    values = [title, body, amount,name,date]
+
+    d.update(zip(keys, values))
+    print(d)
+    #data=json.dumps(list)
+    data=d
+    append_json_to_file(data, PATH_FILE)
+    # 検証（保存ファイルのまるごと読み込み）
+    f_saved = open(PATH_FILE, "r")
+    contents = f_saved.read()
+    f_saved.close()
+    nnw.close()
+    setTable(win)
 def setTable3(win):
     headers = ["内容", "重要度", "優先度"]
     # ファイルをオープンする
@@ -345,10 +421,11 @@ def stock():
     #(base) PS D:\06.gitrepo\hoteityou> pip install pandas-datareader
     #pip install git+https://github.com/pydata/pandas-datareader.git
 def show_nnw():
+    currentDate = QDateTime()
+    nnw.dateTimeEdit.setDateTime(currentDate.currentDateTime())
     nnw.show()
 
-def close_nnw():
-    nnw.close()
+
 setTable(win)
 setTable2(win)
 setTable3(win)

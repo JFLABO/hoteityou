@@ -29,16 +29,6 @@
     <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
    </property>
   </widget>
-  <widget class="QTableView" name="tableView">
-   <property name="geometry">
-    <rect>
-     <x>20</x>
-     <y>30</y>
-     <width>751</width>
-     <height>192</height>
-    </rect>
-   </property>
-  </widget>
   <widget class="QTableView" name="tableView_2">
    <property name="geometry">
     <rect>
@@ -426,6 +416,16 @@
    </property>
    <property name="text">
     <string>新規追加</string>
+   </property>
+  </widget>
+  <widget class="QTableWidget" name="tableWidget_2">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>30</y>
+     <width>751</width>
+     <height>191</height>
+    </rect>
    </property>
   </widget>
  </widget>
