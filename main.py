@@ -124,8 +124,8 @@ def close_nnw():
     #ウインドウから値を取得
     #オブジェクトの数だけ繰り返す。
     #開いたときに初期化 今日の日付にする
-    dt = self.ui.dateTimeEdit.dateTime()
-    dt_string = dt.toString(self.ui.dateTimeEdit.displayFormat())
+    #dt = self.ui.dateTimeEdit.dateTime()
+    #dt_string = dt.toString(self.ui.dateTimeEdit.displayFormat())
 
 
     #nnw.dateTimeEdit.strftime()
@@ -134,10 +134,18 @@ def close_nnw():
     body = nnw.textEdit.toPlainText()
     amount = nnw.lineEdit_2.text()
     name = nnw.label_2.text()
-    date=nnw.dateTimeEdit.strftime()
+    date=nnw.dateTimeEdit.dateTime()
+    #日付形式を指定して保存
+    date=date.toString("yyyy/MM/dd hh:mm:ss")
+
+    if nnw.groupItemType.checkedId() < 0:
+        strItemType = "未選択"
+    else:
+        strItemType = ['やりたいこと', 'ほしいもの'][nnw.groupItemType.checkedId()]
+
     d={}
-    keys = ['title', 'body', 'amount','name',date]
-    values = [title, body, amount,name,date]
+    keys = ['title', 'body', 'amount','name','date','type']
+    values = [title, body, amount,name,date,strItemType]
 
     d.update(zip(keys, values))
     print(d)
@@ -422,6 +430,9 @@ def stock():
     #pip install git+https://github.com/pydata/pandas-datareader.git
 def show_nnw():
     currentDate = QDateTime()
+    nnw.groupItemType = QButtonGroup()
+    nnw.groupItemType.addButton(nnw.radioButton, 0)
+    nnw.groupItemType.addButton(nnw.radioButton_2, 1)
     nnw.dateTimeEdit.setDateTime(currentDate.currentDateTime())
     nnw.show()
 
