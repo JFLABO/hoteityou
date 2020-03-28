@@ -21,6 +21,7 @@ nnw = uic.loadUi("ui/nnw.ui")
 view2 = uic.loadUi("ui/view2.ui")
 hensyu = uic.loadUi("ui/hensyu.ui")
 addnew = uic.loadUi("ui/addnew.ui")
+sokusanki = uic.loadUi("ui/sokusanki.ui")
 
 win.resize(1024,750)
 win.show()
@@ -396,6 +397,8 @@ def hello1(win):
     win.label_16.setText(str2)
     win.label_17.setText(str1+str3)
 
+def show_sokusanki():
+    sokusanki.show()
 def show_view2():
     view2.show()
 def append_json_to_file(data: dict, path_file: str) -> bool:
@@ -457,6 +460,7 @@ addnew.pushButton.clicked.connect(addnew_obj)
 win.pushButton_3.clicked.connect(show_addnew)
 nnw.pushButton.clicked.connect(close_nnw)
 win.pushButton_5.clicked.connect(stock)
+win.pushButton_7.clicked.connect(show_sokusanki)
 t = threading.Thread(target = scheduler)
 t.start()
 #t.stopping.set()  # 終了中フラグを立てる
