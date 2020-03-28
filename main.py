@@ -79,6 +79,8 @@ def setTable(win):
         Data2 = QTableWidgetItem(str(item["amount"]))
         win.tableWidget.setItem(i, j, Data2)
         i = i + 1
+    win.tableWidget_2.resizeColumnToContents(0)
+    win.tableWidget_2.resizeColumnToContents(2)
 '''
 def setTable(win):
     headers = ["内容", "重要度", "優先度"]
@@ -119,6 +121,11 @@ def setTable2(win):
     header.setSectionResizeMode(0, QtWidgets.QHeaderView.Stretch)
     win.tableView_2.resizeColumnToContents(1)
     win.tableView_2.resizeColumnToContents(2)
+
+#更新ロジック
+#指定のデータ番号のデータを削除し新しいものを書き込む　配列操作で指定の番号を削除して行う
+#全部書き込む
+
 def close_nnw():
     #表示順序の変更
     #ウインドウから値を取得
@@ -204,6 +211,8 @@ def setTable3(win):
         Data2 = QTableWidgetItem(str(item["amount"]))
         win.tableWidget.setItem(i, j, Data2)
         i = i + 1
+    win.tableWidget.resizeColumnToContents(2)
+    win.tableWidget.resizeColumnToContents(3)
 def show_hensyu(self):
     #print(self.currentQTableWidgetItem.row())
     #番目のデータ 　削除
