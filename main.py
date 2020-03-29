@@ -34,6 +34,62 @@ win.show()
 #t1 = threading.Thread(target=functions.hello1(win))
 #t1 = threading.Timer(1, functions.hello1(win))
 #t1.start()
+
+def setTable_sokusanki():
+    headers = ["内容", "重要度", "優先度"]
+    # ファイルをオープンする
+    # test_data = open("data/tabledata.json", "r")
+    # すべての内容を読み込む
+    # contents = test_data.read()
+    # ファイルをクローズする
+    # test_data.close()
+    f = open('data/test.txt', 'r')
+    jsonData = json.load(f)
+    f.close()
+    # tableData0=contents
+    d = jsonData
+    print(d)
+    i = 0
+    j = 0
+    # for i, (key, value) in enumerate(d["events"].items()):
+    # set row count
+    sokusanki.tableWidget.setRowCount(10)
+    # set column count
+    sokusanki.tableWidget.setColumnCount(4)
+    sokusanki.tableWidget.itemDoubleClicked.connect(show_hensyu)
+    # currentQTableWidgetItem.row()
+
+    for item in d:
+        # print(str(i)+":"+item["title"])
+        Data = QTableWidgetItem(str(item["title"]))
+        j = 0
+        sokusanki.tableWidget.setItem(i, j, Data)
+
+        j = 1
+        Data2 = QTableWidgetItem(str(item["body"]))
+        sokusanki.tableWidget.setItem(i, j, Data2)
+
+        j = 2
+
+        if not item.get('date'):
+            print('NULL')
+        else:
+            Data2 = QTableWidgetItem(str(item["date"]))
+            win.tableWidget.setItem(i, j, Data2)
+
+        j = 3
+        Data2 = QTableWidgetItem(str(item["amount"]))
+        sokusanki.tableWidget.setItem(i, j, Data2)
+        i = i + 1
+    sokusanki.tableWidget.resizeColumnToContents(2)
+    sokusanki.tableWidget.resizeColumnToContents(3)
+    am = 0
+    for key in jsonData:
+        print(key['amount'])  # titleのみ参照
+        if not key['amount'] == "":
+            am = am + int(key['amount'])
+
+    sokusanki.label.setText(str(am))
 def setTable(win):
     headers = ["内容", "重要度", "優先度"]
     # ファイルをオープンする
@@ -398,6 +454,7 @@ def hello1(win):
     win.label_17.setText(str1+str3)
 
 def show_sokusanki():
+    setTable_sokusanki()
     sokusanki.show()
 def show_view2():
     view2.show()
