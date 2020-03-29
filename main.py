@@ -59,7 +59,7 @@ def setTable_sokusanki():
     sokusanki.tableWidget.itemDoubleClicked.connect(show_hensyu)
     # currentQTableWidgetItem.row()
 
-    for item in d:
+    for item in reversed(d):
         # print(str(i)+":"+item["title"])
         Data = QTableWidgetItem(str(item["title"]))
         j = 0
@@ -84,7 +84,7 @@ def setTable_sokusanki():
     sokusanki.tableWidget.resizeColumnToContents(2)
     sokusanki.tableWidget.resizeColumnToContents(3)
     am = 0
-    for key in jsonData:
+    for key in  reversed(d):
         print(key['amount'])  # titleのみ参照
         if not key['amount'] == "":
             am = am + int(key['amount'])
@@ -246,7 +246,8 @@ def setTable3(win):
     win.tableWidget.itemDoubleClicked.connect(show_hensyu)
     # currentQTableWidgetItem.row()
 
-    for item in d:
+    d
+    for item in reversed(d):
         # print(str(i)+":"+item["title"])
         Data = QTableWidgetItem(str(item["title"]))
         j = 0
@@ -270,6 +271,15 @@ def setTable3(win):
         i = i + 1
     win.tableWidget.resizeColumnToContents(2)
     win.tableWidget.resizeColumnToContents(3)
+
+    am = 0
+    for key in jsonData:
+        print(key['amount'])  # titleのみ参照
+        if not key['amount'] == "":
+            am = am + int(key['amount'])
+    am='{:,}'.format(am)
+    win.label_18.setText(str(am))
+
 def show_hensyu(self):
     #print(self.currentQTableWidgetItem.row())
     #番目のデータ 　削除
@@ -426,6 +436,7 @@ def addnew_obj():
     contents = f_saved.read()
     f_saved.close()
     addnew.close()
+    setTable3(win)
 def show_addnew():
     addnew.show()
     #表のアップデート
