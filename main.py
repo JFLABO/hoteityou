@@ -88,7 +88,7 @@ def setTable_sokusanki():
         print(key['amount'])  # titleのみ参照
         if not key['amount'] == "":
             am = am + int(key['amount'])
-
+    am='{:,}'.format(am)
     sokusanki.label.setText(str(am))
 def setTable(win):
     headers = ["内容", "重要度", "優先度"]

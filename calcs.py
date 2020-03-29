@@ -22,4 +22,4 @@ for key in jsonData:
     print(key['amount'])  # titleのみ参照
     if not key['amount'] == "":
         am=am+int(key['amount'])
-print (am)
+print ('{:,}'.format(am))
